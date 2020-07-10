@@ -1,7 +1,7 @@
 # sergey-werk_infra
 sergey-werk Infra repository
 
-## Connect with
+## Connect with ProxyJump
 
 Подключиться к хосту внутренней сети можно воспользовавшись функцией ProxyJump стандартного ssh-клиента:
 
@@ -11,14 +11,15 @@ sergey-werk Infra repository
 
     ssh -o ProxyCommand='ssh -q -W %h:%p appuser@bastion' appuser@internalhost
 
-Также можно сохранить конфигурацию в файле ~/.ssh/config
-
+Также можно сохранить конфигурацию в файле `~/.ssh/config`:
+```
 Host internalhost
         User appuser
         HostName 10.130.0.9
         ProxyJump appuser@bastion
         IdentityFile ~/.ssh/appuser
-
+```
 
 bastion_IP = 84.201.133.129
+
 someinternalhost_IP = 10.130.0.9
