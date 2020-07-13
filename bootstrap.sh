@@ -22,8 +22,8 @@ After=network.target
 
 [Service]
 Type=simple
-User=yc-user
-WorkingDirectory=/home/yc-user/reddit
+User=appuser
+WorkingDirectory=/home/appuser/reddit
 # Environment=PUMA_DEBUG=1
 ExecStart=/usr/local/bin/puma config.ru
 Restart=always
