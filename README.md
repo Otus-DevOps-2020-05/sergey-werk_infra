@@ -20,11 +20,6 @@ Host internalhost
         IdentityFile ~/.ssh/appuser
 ```
 
-```
-bastion_IP = 84.201.133.129
-someinternalhost_IP = 10.130.0.9
-```
-
 ## YC testapp
 
 ```
@@ -32,7 +27,7 @@ testapp_IP = 84.201.135.50
 testapp_port = 9292
 ```
 
-####Run machine with bootstrap.sh:
+#### Run machine with bootstrap.sh:
 
 ```
 yc compute instance create \
@@ -46,3 +41,4 @@ yc compute instance create \
 ```
 
 Выглядит как груда костылей, но работает. =)
+=======
