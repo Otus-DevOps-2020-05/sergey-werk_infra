@@ -20,6 +20,29 @@ Host internalhost
         IdentityFile ~/.ssh/appuser
 ```
 
+```
 bastion_IP = 84.201.133.129
-
 someinternalhost_IP = 10.130.0.9
+```
+
+## YC testapp
+
+```
+testapp_IP = 84.201.135.50
+testapp_port = 9292
+```
+
+####Run machine with bootstrap.sh:
+
+```
+yc compute instance create \
+   --name reddit-app2 \
+   --hostname reddit-app2 \
+   --memory=4 \
+   --create-boot-disk image-folder-id=standard-images,image-family=ubuntu-1604-lts,size=4GB,type=network-ssd \
+   --network-interface subnet-name=default-ru-central1-a,nat-ip-version=ipv4, \
+   --metadata serial-port-enable=1 \
+   --metadata-from-file user-data=./bootstrap-metadata.yaml
+```
+
+Выглядит как груда костылей, но работает. =)
