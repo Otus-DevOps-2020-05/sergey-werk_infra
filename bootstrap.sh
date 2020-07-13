@@ -31,16 +31,11 @@ Restart=always
 WantedBy=multi-user.target
 EOT
 
-systemctl daemon-reload
-
-
-# As appuser:
-useradd -m appuser
-su appuser
-cd ~
-
-git clone -b monolith https://github.com/express42/reddit.git
-cd reddit && bundle install
+useradd -m appuser  # if not exist for some reason
+# su appuser # <-- not working in cloud-init!
+wget -qO - -- https://raw.githubusercontent.com/Otus-DevOps-2020-05/sergey-werk_infra/cloud-testapp/deploy.sh \
+	| sudo -u appuser --login  bash
 
 # start
+systemctl daemon-reload
 sudo systemctl start reddit.service && sudo systemctl enable reddit.service
