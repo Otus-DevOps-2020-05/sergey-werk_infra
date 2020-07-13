@@ -1,25 +1,20 @@
 #!/usr/bin/env bash
 
-su appuser
-cd ~
-
 # Install MondoDB
-wget -qO - "https://www.mongodb.org/static/pgp/server-4.2.asc" | sudo apt-key add -
-echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/4.2 multiverse" | sudo tee "/etc/apt/sources.list.d/mongodb-org-4.2.list"
-sudo apt-get update && sudo apt-get install -y mongodb-org
-sudo systemctl start mongod && sudo systemctl enable mongod
+wget -qO - "https://www.mongodb.org/static/pgp/server-4.2.asc" | apt-key add -
+echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/4.2 multiverse" | tee "/etc/apt/sources.list.d/mongodb-org-4.2.list"
+apt-get update && apt-get install -y mongodb-org
+systemctl start mongod && systemctl enable mongod
 
 # Install ruby
-sudo apt-get update && sudo apt-get install -y ruby-full ruby-bundler build-essential
+apt-get update && apt-get install -y ruby-full ruby-bundler build-essential
+
 
 # Deploy
-sudo apt-get install -y git
-cd ~
-git clone -b monolith https://github.com/express42/reddit.git
-cd reddit && bundle install
+apt-get install -y git
 
-# Install and run the Dev. version
-sudo tee <<EOT >>/etc/systemd/system/reddit.service
+# Install as service
+tee <<EOT >>/etc/systemd/system/reddit.service
 [Unit]
 Description=Puma HTTP Server
 After=network.target
@@ -36,5 +31,16 @@ Restart=always
 WantedBy=multi-user.target
 EOT
 
-sudo systemctl daemon-reload
+systemctl daemon-reload
+
+
+# As appuser:
+useradd -m appuser
+su appuser
+cd ~
+
+git clone -b monolith https://github.com/express42/reddit.git
+cd reddit && bundle install
+
+# start
 sudo systemctl start reddit.service && sudo systemctl enable reddit.service
