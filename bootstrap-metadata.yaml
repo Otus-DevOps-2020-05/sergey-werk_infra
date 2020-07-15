@@ -1,0 +1,16 @@
+#cloud-config
+disable_root: true
+timezone: Europe/Moscow
+repo_update: true
+
+users:
+  - default
+  - name: appuser
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
+    ssh-authorized-keys:
+      - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDPjQ5Dd2gklyG9IS5Guut52by+8XyRybdKiqWBJBQ2E3Z08LQkGqbQGB6dALrWhTpbfMs8B8sRjYsAVJ0aXNtYC4G6eCklCtIIP60VLrO+yrWW5KeOe8L8CnU9/cRBU2EOOSHfROCWawCa12kh13fxhiYiyVsLV4i9MkTOUtGPG8VTi+4hqb6bdd5H/X+pjiAeSmZiXfyX4gdweFD7/+IifpvSofU1SjBnQMvM2YtQwV41SmS6wTQ4ZCiaHXnDTyJDbSD6EEnQrornZF+g6Pd8YTUcZZXzHYXHd3oOvWvJAgFdVmcW7e/IxpkFJmXheTAQuRZQwuVK/wBW/ktRGWmKcPEfLIFA60j4VfU0wzJi8dMCxQYwiqOU5K4ZbZCBD2F7WYZ2fbM7MBEtoMx1+3Vtj3QC1VtgcSQ9SlwKcFd0IIh5NrcKka+RvqpDb8nPWw0YZ1Zeh/y/FvYosf8VRjMAhOMsHQfoqD564/IgZuZYivVSFFUxW6gjjJ4Xf7eNR/0= sergey"
+
+runcmd:
+  - wget https://raw.githubusercontent.com/Otus-DevOps-2020-05/sergey-werk_infra/cloud-testapp/bootstrap.sh
+  - bash bootstrap.sh
