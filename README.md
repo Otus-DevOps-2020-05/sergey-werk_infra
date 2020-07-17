@@ -40,5 +40,9 @@ yc compute instance create \
    --metadata-from-file user-data=./bootstrap-metadata.yaml
 ```
 
-Выглядит как груда костылей, но работает. =)
-=======
+#### Packer
+
+```
+packer verify immutable.json
+packer build -var-file=variables.json immutable.json
+```
