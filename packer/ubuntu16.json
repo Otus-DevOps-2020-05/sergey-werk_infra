@@ -1,0 +1,36 @@
+{
+    "variables": {
+        "zone": "ru-central1-a"
+    },
+    "builders": [
+        {
+            "type": "yandex",
+            "service_account_key_file": "{{ user `service_account_key_file` }}",
+            "folder_id": "{{ user `folder_id` }}",
+            "source_image_family": "ubuntu-1604-lts",
+            "image_name": "{{ user `image_name` }}",
+            "image_family": "reddit-base",
+            "ssh_username": "ubuntu",
+            "platform_id": "standard-v1",
+            "use_ipv4_nat": true,
+            "disk_size_gb": 4,
+            "disk_type": "network-ssd",
+            "zone": "{{ user `zone` }}"
+        }
+    ],
+    "provisioners": [
+        {   "type": "shell",
+            "inline": [ "sudo apt-get update",
+                         "sudo DEBIAN_FRONTEND=noninteractive apt-get upgrade -yq",
+                         "# Retry if could not get lock /var/lib/dpkg/lock-frontend"
+                ],
+            "pause_before": "2s",
+            "max_retries": 30
+        },
+        {
+            "type": "shell",
+            "scripts": ["scripts/install_mongodb.sh","scripts/install_ruby.sh"],
+            "execute_command": "sudo DEBIAN_FRONTEND=noninteractive {{ .Path }}"
+        }
+    ]
+}

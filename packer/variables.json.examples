@@ -1,0 +1,6 @@
+{
+    "folder_id": "<yandex_cloud_folder_id>",
+    "image_name": "reddit-base-{{ timestamp }}",
+    "service_account_key_file": "{{ env `HOME` }}/otus-devops/.yc_iam_key.json",
+    "zone": "ru-central1-a"
+}

@@ -1,0 +1,52 @@
+{
+    "variables": {
+        "zone": "ru-central1-a",
+        "image_name": "reddit-full-{{ timestamp }}",
+        "folder_id": "b1gh98dc9qeshmbv4lsd",
+        "service_account_key_file": "{{ env `HOME` }}/current/otus-devops/yc/iam_key.json"
+    },
+    "builders": [
+        {
+            "type": "yandex",
+            "service_account_key_file": "{{ user `service_account_key_file` }}",
+            "folder_id": "{{ user `folder_id` }}",
+            "source_image_folder_id": "{{ user `folder_id` }}",
+            "source_image_name": "reddit-base-1594935247",
+            "image_name": "{{ user `image_name` }}",
+            "image_family": "reddit-full",
+            "ssh_username": "ubuntu",
+            "platform_id": "standard-v1",
+            "use_ipv4_nat": true,
+            "disk_size_gb": 4,
+            "disk_type": "network-ssd",
+            "zone": "{{ user `zone` }}"
+        }
+    ],
+    "provisioners": [
+        {   "type": "file",
+            "source": "files/reddit.service",
+            "destination": "/tmp/"
+        },
+        {   "type": "shell",
+            "inline": [ "sudo mv /tmp/reddit.service /etc/systemd/system/",
+                        "sudo systemctl daemon-reload"
+                        ]
+        },
+        {   "type": "shell",
+            "inline": [ "sudo DEBIAN_FRONTEND=noninteractive apt-get install -y git",
+                         "# Retry if could not get lock /var/lib/dpkg/lock-frontend"
+                ],
+            "pause_before": "2s",
+            "max_retries": 30
+        },
+        {   "type": "shell",
+            "script": "files/deploy.sh",
+            "execute_command": "sudo {{ .Path }}"
+        },
+        {   "type": "shell",
+            "inline": [ "sudo systemctl start reddit.service",
+                        "sudo systemctl enable reddit.service"
+                        ]
+        }
+    ]
+}
