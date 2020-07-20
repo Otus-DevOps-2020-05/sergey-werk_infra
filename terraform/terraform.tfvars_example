@@ -1,0 +1,9 @@
+service_account_key_file = "~/yc/iam_key.json"
+public_key_path = "~/yc/yc.pub"
+private_key_path = "~/yc/yc"
+cloud_id  = "<cloud_id>"
+folder_id = "<folder_id>"
+zone      = "ru-central1-a"
+image_id  = "<image_id>"
+# default-ru-central1-a
+subnet_id = "<subnet_id>"
