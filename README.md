@@ -46,3 +46,14 @@ yc compute instance create \
 packer verify immutable.json
 packer build -var-file=variables.json immutable.json
 ```
+
+
+#### Terraform with YC
+
+[Docs](https://www.terraform.io/docs/providers/yandex/index.html)
+
+```
+yc config list
+
+
+```
