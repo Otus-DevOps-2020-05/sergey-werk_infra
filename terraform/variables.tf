@@ -1,3 +1,8 @@
+variable initial_count {
+  description = "Initial number of instances"
+  default     = 1
+}
+
 variable cloud_id {
   description = "Cloud"
 }

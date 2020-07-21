@@ -7,3 +7,4 @@ zone      = "ru-central1-a"
 image_id  = "<image_id>"
 # default-ru-central1-a
 subnet_id = "<subnet_id>"
+initial_count = 2

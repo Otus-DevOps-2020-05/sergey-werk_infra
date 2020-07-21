@@ -69,3 +69,7 @@ terraform output
 terraform taint yandex_compute_instance.app
 
 ```
+Самая полезная вещь:
+```
+export TF_LOG=TRACE; terraform apply
+```
