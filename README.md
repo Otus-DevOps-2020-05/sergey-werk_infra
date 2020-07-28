@@ -46,3 +46,29 @@ yc compute instance create \
 packer verify immutable.json
 packer build -var-file=variables.json immutable.json
 ```
+
+#### Terraform with YC
+
+[Docs](https://www.terraform.io/docs/providers/yandex/index.html)
+
+
+Почему-то не работает с ssh-agent (не получается использовать запароленный ключ).
+```
+Error: Failed to parse ssh private key: ssh: this private key is passphrase protected
+```
+
+Шпаргалка по командам:
+```
+yc config list
+
+terraform show
+terraform refresh
+terraform output
+terraform taint yandex_compute_instance.app
+
+```
+Самая полезная вещь:
+```
+export TF_LOG=TRACE; terraform apply
+```
+
