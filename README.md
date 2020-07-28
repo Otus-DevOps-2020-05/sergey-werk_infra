@@ -47,7 +47,6 @@ packer verify immutable.json
 packer build -var-file=variables.json immutable.json
 ```
 
-
 #### Terraform with YC
 
 [Docs](https://www.terraform.io/docs/providers/yandex/index.html)
@@ -57,7 +56,6 @@ packer build -var-file=variables.json immutable.json
 ```
 Error: Failed to parse ssh private key: ssh: this private key is passphrase protected
 ```
-
 
 Шпаргалка по командам:
 ```
@@ -73,3 +71,4 @@ terraform taint yandex_compute_instance.app
 ```
 export TF_LOG=TRACE; terraform apply
 ```
+
