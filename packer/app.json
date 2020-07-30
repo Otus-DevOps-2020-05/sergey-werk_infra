@@ -1,0 +1,30 @@
+{
+    "variables": {
+        "zone": "ru-central1-a"
+    },
+    "builders": [
+        {
+            "type": "yandex",
+            "service_account_key_file": "{{ user `service_account_key_file` }}",
+            "folder_id": "{{ user `folder_id` }}",
+            "source_image_family": "ubuntu-1604-lts",
+            "image_name": "reddit-app-{{ timestamp }}",
+            "image_family": "reddit-app",
+            "ssh_username": "ubuntu",
+            "platform_id": "standard-v1",
+            "use_ipv4_nat": true,
+            "disk_size_gb": 4,
+            "disk_type": "network-ssd",
+            "zone": "{{ user `zone` }}"
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "scripts": ["scripts/install_ruby.sh"],
+            "execute_command": "sudo DEBIAN_FRONTEND=noninteractive {{ .Path }}",
+	    "pause_before": "10s",
+	    "max_retries": 5
+        }
+    ]
+}

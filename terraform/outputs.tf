@@ -1,11 +1,11 @@
-
-output "ext_ip_addr_app" {
-  value = {
-    for instance in yandex_compute_instance.app :
-    instance.name => instance.network_interface.0.nat_ip_address
-  }
+output "external_ip_addresses_app" {
+  value = module.app.external_ip_addr_app
+}
+output "external_ip_address_db" {
+  value = module.db.external_ip_addr_db
 }
 
-output "lb_ip_addr" {
-  value = [for l in yandex_lb_network_load_balancer.app_lb.listener : l.external_address_spec.*.address].0
-}
+
+#output "lb_ip_addr" {
+#  value = [for l in yandex_lb_network_load_balancer.app_lb.listener : l.external_address_spec.*.address].0
+#}
