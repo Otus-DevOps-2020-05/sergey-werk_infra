@@ -23,7 +23,7 @@ resource "yandex_compute_instance" "app" {
 
   network_interface {
     subnet_id = var.subnet_id
-    nat = true
+    nat       = true
   }
 
   connection {
@@ -34,11 +34,11 @@ resource "yandex_compute_instance" "app" {
     private_key = file(var.private_key_path)
   }
 
-#  provisioner "file" {
-#    source      = "files/puma.service"
-#    destination = "/tmp/puma.service"
-#  }
-#  provisioner "remote-exec" {
-#    script = "files/deploy.sh"
-#  }
+  #  provisioner "file" {
+  #    source      = "files/puma.service"
+  #    destination = "/tmp/puma.service"
+  #  }
+  #  provisioner "remote-exec" {
+  #    script = "files/deploy.sh"
+  #  }
 }
