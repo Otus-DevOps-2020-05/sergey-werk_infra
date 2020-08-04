@@ -8,6 +8,7 @@ User=ubuntu
 WorkingDirectory=/home/ubuntu/reddit
 ExecStart=/bin/bash -lc 'puma'
 Restart=always
+Environment="DATABASE_URL=${database_url}"
 
 [Install]
 WantedBy=multi-user.target

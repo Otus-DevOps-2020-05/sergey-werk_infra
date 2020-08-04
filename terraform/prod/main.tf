@@ -31,3 +31,7 @@ module "db" {
   subnet_id       = var.subnet_id
   folder_id       = var.folder_id
 }
+
+module "vpc" {
+  source          = "../modules/vpc"
+}
