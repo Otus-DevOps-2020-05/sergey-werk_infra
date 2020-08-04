@@ -38,4 +38,8 @@ resource "yandex_compute_instance" "db" {
       # ... because why not? :)
       inline = ["sudo sed -i -e 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf",]
   }
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }

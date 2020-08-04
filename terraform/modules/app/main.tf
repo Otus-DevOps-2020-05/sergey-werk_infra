@@ -1,6 +1,10 @@
+locals {
+  timestamp = formatdate("YYYYMMDDhhmmss", timestamp())
+}
+
 resource "yandex_compute_instance" "app" {
   count = var.initial_count
-  name  = "reddit-app${count.index + 1}"
+  name  = "reddit-app${count.index + 1}-${local.timestamp}"
   labels = {
     tags = "reddit-app"
   }
@@ -36,11 +40,15 @@ resource "yandex_compute_instance" "app" {
 
   provisioner "file" {
     content      = templatefile("${path.module}/files/puma.service",
-				{database_url=var.db_ip_addr, })
+                                {database_url=var.db_ip_addr, })
     destination = "/tmp/puma.service"
   }
 
   provisioner "remote-exec" {
       script = "${path.module}/files/deploy.sh"
+  }
+
+  lifecycle {
+    create_before_destroy = true
   }
 }
