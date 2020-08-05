@@ -1,0 +1,88 @@
+[
+  {
+    "id": "fhmdd4fj2m8s3svfsilk",
+    "folder_id": "b1gh98dc9qeshmbv4lsd",
+    "created_at": "2020-08-05T20:55:38Z",
+    "name": "reddit-db",
+    "labels": {
+      "tags": "reddit-db"
+    },
+    "zone_id": "ru-central1-a",
+    "platform_id": "standard-v1",
+    "resources": {
+      "memory": "2147483648",
+      "cores": "2",
+      "core_fraction": "100"
+    },
+    "status": "RUNNING",
+    "boot_disk": {
+      "mode": "READ_WRITE",
+      "device_name": "fhmmom06qvm260hl30oe",
+      "auto_delete": true,
+      "disk_id": "fhmmom06qvm260hl30oe"
+    },
+    "network_interfaces": [
+      {
+        "index": "0",
+        "mac_address": "d0:0d:d6:91:f3:15",
+        "subnet_id": "e9bjq56ja2pbinli1ton",
+        "primary_v4_address": {
+          "address": "10.130.0.12",
+          "one_to_one_nat": {
+            "address": "84.201.133.154",
+            "ip_version": "IPV4"
+          }
+        }
+      }
+    ],
+    "fqdn": "fhmdd4fj2m8s3svfsilk.auto.internal",
+    "scheduling_policy": {},
+    "network_settings": {
+      "type": "STANDARD"
+    },
+    "placement_policy": {}
+  },
+  {
+    "id": "fhmi5njjknkd4n3qv8kc",
+    "folder_id": "b1gh98dc9qeshmbv4lsd",
+    "created_at": "2020-08-05T20:56:54Z",
+    "name": "reddit-app1-20200805205900",
+    "labels": {
+      "tags": "reddit-app"
+    },
+    "zone_id": "ru-central1-a",
+    "platform_id": "standard-v1",
+    "resources": {
+      "memory": "2147483648",
+      "cores": "2",
+      "core_fraction": "100"
+    },
+    "status": "RUNNING",
+    "boot_disk": {
+      "mode": "READ_WRITE",
+      "device_name": "fhm5dtv20mjdt6ecck2m",
+      "auto_delete": true,
+      "disk_id": "fhm5dtv20mjdt6ecck2m"
+    },
+    "network_interfaces": [
+      {
+        "index": "0",
+        "mac_address": "d0:0d:12:2d:e7:3a",
+        "subnet_id": "e9bjq56ja2pbinli1ton",
+        "primary_v4_address": {
+          "address": "10.130.0.13",
+          "one_to_one_nat": {
+            "address": "84.201.157.8",
+            "ip_version": "IPV4"
+          }
+        }
+      }
+    ],
+    "fqdn": "fhmi5njjknkd4n3qv8kc.auto.internal",
+    "scheduling_policy": {},
+    "network_settings": {
+      "type": "STANDARD"
+    },
+    "placement_policy": {}
+  }
+]

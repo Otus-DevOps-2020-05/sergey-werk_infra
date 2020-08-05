@@ -93,3 +93,41 @@ terraform state pull
  1. to specify `access_key` and `access_key` here,
  2. to set AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY env. variables,
  3. to set AWS_SHARED_CREDENTIALS_FILE env. variable.
+
+#### Ansible
+
+```
+ ansible all -m ping -i inventory.yml
+ ansible app -m command -a 'ruby -v'
+ ansible app -m shell -a 'ruby -v; bundler -v'
+ ansible db -m command -a "systemctl status mongod"
+ ansible db -m service -a name=mongod
+ ansible app -m git -a "repo=https://github.com/express42/reddit.git dest=/home/ubuntu/reddit"
+ ansible app -m command -a 'rm -rf ~/reddit'
+```
+
+##### Dynamic inventory with custom script
+```
+ansible all -m ping -i inventory.sh
+84.201.157.8 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+84.201.133.154 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+
+
+ansible-inventory -i inventory.sh  --graph
+@all:
+  |--@ungrouped:
+  |  |--84.201.133.154
+  |  |--84.201.157.8
+```
