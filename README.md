@@ -65,6 +65,7 @@ terraform show
 terraform refresh
 terraform output
 terraform taint yandex_compute_instance.app
+terraform state pull
 
 ```
 Самая полезная вещь:
@@ -72,3 +73,23 @@ terraform taint yandex_compute_instance.app
 export TF_LOG=TRACE; terraform apply
 ```
 
+##### Бэкенд в Object Storage
+
+см. backend.tf
+```
+export AWS_SHARED_CREDENTIALS_FILE=~/current/otus-devops/yc/storage_credeintials
+terraform state pull
+```
+
+Косяки (на август 2020):
+
+* Использование переменных не работает в описании бэкенда!
+* aws-sdk-go не поддерживает загрузку конфигурации из файла для эндпоинтов кроме aws.
+* Соответственно, `shared_credentials_file` не работает.
+* Шифрование бакетов в YC Object Storage отсутствует?
+* S3-бэкенд терраформа поддерживает блокировку через DynamoDB AWS (в YC нет аналогов с оплатой за каждый запрос).
+
+Есть три варианта:
+ 1. to specify `access_key` and `access_key` here,
+ 2. to set AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY env. variables,
+ 3. to set AWS_SHARED_CREDENTIALS_FILE env. variable.

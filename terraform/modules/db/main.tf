@@ -1,14 +1,9 @@
-provider "yandex" {
-  service_account_key_file = var.service_account_key_file
-  cloud_id                 = var.cloud_id
-  folder_id                = var.folder_id
-  zone                     = var.zone
-}
 
-resource "yandex_compute_instance" "app" {
-  count = var.initial_count
-  name  = "reddit-app${count.index + 1}"
-  zone  = var.zone
+resource "yandex_compute_instance" "db" {
+  name = "reddit-db"
+  labels = {
+    tags = "reddit-db"
+  }
 
   metadata = {
     ssh-keys = "ubuntu:${file(var.public_key_path)}"
@@ -39,11 +34,12 @@ resource "yandex_compute_instance" "app" {
     private_key = file(var.private_key_path)
   }
 
-  provisioner "file" {
-    source      = "files/puma.service"
-    destination = "/tmp/puma.service"
-  }
   provisioner "remote-exec" {
-    script = "files/deploy.sh"
+      # ... because why not? :)
+      inline = ["sudo sed -i -e 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf",]
+  }
+
+  lifecycle {
+    create_before_destroy = true
   }
 }
