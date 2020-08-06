@@ -12,7 +12,7 @@ resource "yandex_compute_instance" "db" {
   resources {
     cores         = 2
     memory        = 2
-    core_fraction = 20
+    core_fraction = 100
   }
 
   boot_disk {
@@ -37,9 +37,5 @@ resource "yandex_compute_instance" "db" {
   provisioner "remote-exec" {
       # ... because why not? :)
       inline = ["sudo sed -i -e 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf",]
-  }
-
-  lifecycle {
-    create_before_destroy = true
   }
 }

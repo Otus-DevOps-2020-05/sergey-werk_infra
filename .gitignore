@@ -5,3 +5,4 @@ variables.json
 *.tfvars
 .terraform/
 tmp/
+env/
