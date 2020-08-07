@@ -6,3 +6,5 @@ variables.json
 .terraform/
 tmp/
 env/
+#Ansible
+*.retry
