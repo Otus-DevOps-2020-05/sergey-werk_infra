@@ -1,7 +1,7 @@
 ---
 - name: Install git
-	become: true
-	apt: "name=git state=present"
+  become: true
+  apt: "name=git state=present"
 
 - name: Install Ruby && Bundler
   hosts: all
