@@ -11,7 +11,7 @@
     "platform_id": "standard-v1",
     "resources": {
       "memory": "2147483648",
-      "cores": "2",
+      "cores": "2",}
       "core_fraction": "100"
     },
     "status": "RUNNING",
