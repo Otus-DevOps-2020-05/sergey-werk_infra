@@ -131,3 +131,11 @@ ansible-inventory -i inventory.sh  --graph
   |  |--84.201.133.154
   |  |--84.201.157.8
 ```
+
+##### Ansible
+
+
+```
+YC_ANSIBLE_SERVICE_ACCOUNT_FILE=~/.../iam_key.json
+ansible-playbook reddit_app_multiple_plays.yml -i inventory_yc_compute.yml
+```
