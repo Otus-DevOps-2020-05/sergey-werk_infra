@@ -5,18 +5,26 @@
   tasks:
   - name: Add APT key
     apt_key:
-      id: EA312927
-      keyserver: keyserver.ubuntu.com
+      url: "https://www.mongodb.org/static/pgp/server-4.2.asc"
+      state: present
 
   - name: Add APT repository
     apt_repository:
-      repo: deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse
+      repo: deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/4.2 multiverse
+      state: present
+
+  - name: Fix apt
+    apt:
+      name:
+        - apt-transport-https
+        - ca-certificates
       state: present
 
   - name: Install mongodb package
     apt:
       name: mongodb-org
       state: present
+      update_cache: true
 
   - name: Configure service supervisor
     systemd:
