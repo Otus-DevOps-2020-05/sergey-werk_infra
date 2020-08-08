@@ -23,7 +23,6 @@ module "app" {
   image_id        = data.yandex_compute_image.app_image.id
   subnet_id       = var.subnet_id
   folder_id       = var.folder_id
-  db_ip_addr      = module.db.internal_ip_addr
 }
 
 module "db" {

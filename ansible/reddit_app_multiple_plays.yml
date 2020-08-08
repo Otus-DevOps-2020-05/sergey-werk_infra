@@ -1,0 +1,78 @@
+---
+- name: Configure MongoDB
+  hosts: reddit_db
+  tags: db-tag
+  become: true
+  vars:
+    mongo_bind_ip: 0.0.0.0
+  tasks:
+    - name: Change mongo config file
+      template:
+        src: templates/mongod.conf.j2
+        dest: /etc/mongod.conf
+        mode: 0644
+      notify: restart mongod
+
+  handlers:
+  - name: restart mongod
+    service: name=mongod state=restarted
+
+
+- name: Configure App
+  hosts: reddit_app
+  tags: app-tag
+  become: true
+  vars:
+    db_host: "{{ hostvars[(groups['reddit_db'][0])]['ansible_facts']['default_ipv4']['address'] }}"
+  tasks:
+
+    - debug:
+        var: db_host
+
+    - name: Add unit file for Puma
+      copy:
+        src: files/puma.service
+        dest: /etc/systemd/system/puma.service
+
+    - name: Add config for DB connection
+      template:
+        src: templates/db_config.j2
+        dest: /home/ubuntu/db_config
+        owner: ubuntu
+        group: ubuntu
+      notify: reload puma
+
+    - name: enable puma
+      systemd: name=puma enabled=yes
+
+  handlers:
+  - name: reload puma
+    systemd: name=puma state=restarted
+
+
+- name: Deploy App
+  hosts: reddit_app
+  tags: deploy-tag
+  tasks:
+    - name: Install git
+      become: true
+      apt:
+        name: git
+        state: present
+
+    - name: Fetch the latest version of application code
+      git:
+        repo: 'https://github.com/express42/reddit.git'
+        dest: /home/ubuntu/reddit
+        version: monolith
+      notify: restart puma
+
+    - name: bundle install
+      bundler:
+        state: present
+        chdir: /home/ubuntu/reddit
+
+  handlers:
+  - name: restart puma
+    become: true
+    systemd: name=puma state=restarted

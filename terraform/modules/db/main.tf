@@ -34,8 +34,4 @@ resource "yandex_compute_instance" "db" {
     private_key = file(var.private_key_path)
   }
 
-  provisioner "remote-exec" {
-      # ... because why not? :)
-      inline = ["sudo sed -i -e 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf",]
-  }
 }

@@ -20,11 +20,8 @@
     ],
     "provisioners": [
         {
-            "type": "shell",
-            "scripts": ["scripts/install_ruby.sh"],
-            "execute_command": "sudo DEBIAN_FRONTEND=noninteractive {{ .Path }}",
-	    "pause_before": "10s",
-	    "max_retries": 5
+            "type": "ansible",
+	    "playbook_file": "ansible/packer_app.yml"
         }
     ]
 }

@@ -1,0 +1,19 @@
+---
+
+# required:
+# pip3 install grpcio yandex yandexcloud
+plugin: yc_compute
+auth_kind: serviceaccountfile
+folders:
+  - b1gh98dc9qeshmbv4lsd
+# set in YC_ANSIBLE_SERVICE_ACCOUNT_FILE
+# service_account_file: ~/...
+filters:
+    - status == 'RUNNING'
+hostnames:
+  - public_ip
+
+keyed_groups:
+  - key: labels['tags']
+    separator: ''
+    #    parent_group: "{{ zone_id }}"

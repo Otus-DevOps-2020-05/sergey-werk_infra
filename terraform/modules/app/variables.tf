@@ -1,7 +1,3 @@
-variable db_ip_addr {
-  description = "Database IP address"
-  default = "127.0.0.1"
-}
 variable public_key_path {
   description = "Path to the public key used for ssh access"
 }
