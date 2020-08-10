@@ -9,6 +9,10 @@
     src: puma.service
     dest: /etc/systemd/system/puma.service
 
+- name: Database host
+  debug:
+    msg: "{{ db_host }}"
+
 - name: Add config for DB connection
   template:
     src: db_config.j2
