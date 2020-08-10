@@ -2,7 +2,6 @@
 - name: Configure App
   hosts: reddit_app
   become: true
-  vars:
-    db_host: "{{ hostvars[(groups['reddit_db'][0])]['ansible_facts']['default_ipv4']['address'] }}"
   roles:
     - app
+    - jdauphant.nginx
