@@ -1,5 +1,5 @@
 ---
-- name: Install MongoDB 3.2
+- name: Install MongoDB
   hosts: all
   become: true
   # newer syntax

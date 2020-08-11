@@ -2,5 +2,9 @@
 - name: Prepare app environment
   hosts: all
   become: true
-  roles:
-    -app
+  # newer syntax
+  tasks:
+    - import_role:
+        name: app
+      tags:
+        - ruby
