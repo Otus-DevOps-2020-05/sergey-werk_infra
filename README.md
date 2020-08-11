@@ -2,7 +2,7 @@
 sergey-werk Infra repository
 
 
-[![Travis][build-badge]][build]
+[![Build Status](https://travis-ci.com/Otus-DevOps-2020-05/sergey-werk_infra.svg?branch=master)](https://travis-ci.com/Otus-DevOps-2020-05/sergey-werk_infra)
 
 
 ## Connect with ProxyJump
