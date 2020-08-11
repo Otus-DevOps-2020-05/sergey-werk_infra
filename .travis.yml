@@ -3,6 +3,9 @@ language: bash
 before_install:
 - curl https://raw.githubusercontent.com/express42/otus-homeworks/2020-05/run.sh |
   bash
+
+git:
+  quiet: true
 notifications:
   slack:
     rooms:
