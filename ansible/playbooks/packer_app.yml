@@ -1,5 +1,6 @@
 ---
 - name: Prepare app environment
+  debugger: on_failed
   hosts: all
   become: true
   # newer syntax

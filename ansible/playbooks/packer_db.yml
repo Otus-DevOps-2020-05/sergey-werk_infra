@@ -1,5 +1,6 @@
 ---
 - name: Install MongoDB
+  debugger: on_failed
   hosts: all
   become: true
   # newer syntax
