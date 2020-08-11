@@ -1,6 +1,10 @@
 # sergey-werk_infra
 sergey-werk Infra repository
 
+
+[![Travis][build-badge]][build]
+
+
 ## Connect with ProxyJump
 
 Подключиться к хосту внутренней сети можно воспользовавшись функцией ProxyJump стандартного ssh-клиента:
