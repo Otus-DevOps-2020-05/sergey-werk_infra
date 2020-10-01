@@ -8,8 +8,8 @@ jobs:
       script:
         - echo "done"
     - stage: "Linters & Validators"
-      script:
       if: (branch = master AND type = push) OR type = pull_request
+      script:
         - docker exec hw-test bash -c "./tests/ansible-lint.sh"
         - docker exec hw-test bash -c "./tests/terraform-validate.sh"
         - docker exec hw-test bash -c "./tests/packer-validate.sh"
