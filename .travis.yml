@@ -1,22 +1,14 @@
 dist: trusty
+language: bash
+before_install:
+- curl https://raw.githubusercontent.com/express42/otus-homeworks/2020-05/run.sh | bash
 jobs:
   include:
-    - stage: Otus Tests
-      language: bash
-      before_install:
-      - curl https://raw.githubusercontent.com/express42/otus-homeworks/2020-05/run.sh | bash
-    - stage: Linters and Validation
-      #      if: (type = push AND branch = master) OR type = pull_request
-      language: python
-      python:
-        - "3.6"
-      install:
-        - pip install ansible-lint
-      script:
-        - ./tests/ansible-lint.sh
-        - ./tests/terraform-validate.sh
-        - ./tests/packer-validate.sh
-
+    - stage: "Linters"
+      #      if: (branch = master AND type = push) OR type = pull_request
+    - script: ./tests/ansible-lint.sh
+    - script: ./tests/terraform-validate.sh
+    - script: ./tests/packer-validate.sh
 
 git:
   quiet: true
