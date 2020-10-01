@@ -1,14 +1,15 @@
 dist: trusty
 language: bash
 before_install:
+  - curl https://raw.githubusercontent.com/express42/otus-homeworks/2020-05/run.sh | bash
 jobs:
   include:
     - stage: "Otus tests"
       script:
-        - curl https://raw.githubusercontent.com/express42/otus-homeworks/2020-05/run.sh | bash
+        - echo "done"
     - stage: "Linters & Validators"
-      if: (branch = master AND type = push) OR type = pull_request
       script:
+      if: (branch = master AND type = push) OR type = pull_request
         - docker exec hw-test bash -c "./tests/ansible-lint.sh"
         - docker exec hw-test bash -c "./tests/terraform-validate.sh"
         - docker exec hw-test bash -c "./tests/packer-validate.sh"
