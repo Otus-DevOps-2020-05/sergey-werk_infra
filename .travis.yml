@@ -6,10 +6,10 @@ jobs:
   include:
     - stage: "Linters & Validators"
       #      if: (branch = master AND type = push) OR type = pull_request
-    - script:
-      - ./tests/ansible-lint.sh
-      - ./tests/terraform-validate.sh
-      - ./tests/packer-validate.sh
+      script:
+        - ./tests/ansible-lint.sh
+        - ./tests/terraform-validate.sh
+        - ./tests/packer-validate.sh
 
 git:
   quiet: true
