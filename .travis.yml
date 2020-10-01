@@ -7,9 +7,9 @@ jobs:
     # if: (branch = master AND type = push) OR type = pull_request
     - stage: "Linters & Validators"
       script:
-        - ./tests/ansible-lint.sh
-        - ./tests/terraform-validate.sh
-        - ./tests/packer-validate.sh
+        - docker exec hw-test bash -c "./tests/ansible-lint.sh"
+        - docker exec hw-test bash -c "./tests/terraform-validate.sh"
+        - docker exec hw-test bash -c "./tests/packer-validate.sh"
 
 git:
   quiet: true
