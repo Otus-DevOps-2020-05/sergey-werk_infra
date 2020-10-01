@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
-
-echo ok
+echo "Ansible Linter"
+cd ansible/playbooks && ansible-lint
