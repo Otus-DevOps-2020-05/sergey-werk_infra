@@ -1,2 +1,6 @@
 ansible>=2.4
 jmespath  # json_query filter
+molecule>=2.6
+molecule-vagrant>=0.3
+testinfra>=1.10
+python-vagrant>=0.5.15

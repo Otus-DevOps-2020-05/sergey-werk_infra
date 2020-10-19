@@ -6,8 +6,17 @@ variables.json
 .terraform/
 tmp/
 env/
-# Ansible
+#Ansible
 *.retry
 vault.key
 # Ansible roles
 jdauphant.nginx
+
+# Vagrant & molecule
+.vagrant/
+*.log
+*.pyc
+.molecule
+.cache
+.pytest_cache
+.yamllint

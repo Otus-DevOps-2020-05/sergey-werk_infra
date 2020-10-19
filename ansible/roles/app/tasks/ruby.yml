@@ -1,0 +1,7 @@
+---
+- name: Install ruby and rubygems and required packages
+  apt:
+    name: [ruby-full, ruby-bundler, build-essential]
+    state: present
+    update_cache: true  # fixture for E: Could not get lock /var/lib/dpkg/lock-frontend...
+  tags: ruby
