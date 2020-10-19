@@ -1,6 +1,10 @@
 # sergey-werk_infra
 sergey-werk Infra repository
 
+
+[![Build Status](https://travis-ci.com/Otus-DevOps-2020-05/sergey-werk_infra.svg?branch=master)](https://travis-ci.com/Otus-DevOps-2020-05/sergey-werk_infra)
+
+
 ## Connect with ProxyJump
 
 Подключиться к хосту внутренней сети можно воспользовавшись функцией ProxyJump стандартного ssh-клиента:

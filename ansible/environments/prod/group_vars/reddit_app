@@ -1,0 +1,2 @@
+db_hostname: "{{ groups['reddit_db'][0] }}"
+db_host: "{{ hostvars[db_hostname] | json_query('ansible_facts.default_ipv4.address') }}"
