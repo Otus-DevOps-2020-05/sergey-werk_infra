@@ -6,7 +6,7 @@ variables.json
 .terraform/
 tmp/
 env/
-# Ansible
+#Ansible
 *.retry
 vault.key
 # Ansible roles
